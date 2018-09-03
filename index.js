@@ -59,12 +59,12 @@ module.exports = options => {
 };
 
 const getManifestFile = options =>
-  vinylFile.read(options.path, options).catch(err => {
-    if (err.code === 'ENOENT') {
+  vinylFile.read(options.path, options).catch(error => {
+    if (error.code === 'ENOENT') {
       return new Vinyl(options);
     }
 
-    throw err;
+    throw error;
   });
 
 module.exports.manifest = options => {
