@@ -39,7 +39,7 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "dotenv": "^6.0.0",
-    "event-stream": "^3.3.4",
+    "event-stream": "^4.0.0",
     "p-event": "^2.0.0",
     "uuid": "^3.2.1",
     "xo": "^0.23.0"
