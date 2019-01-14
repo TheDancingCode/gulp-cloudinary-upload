@@ -15,6 +15,7 @@ module.exports = options => {
         {showProperties: false}
       );
     }
+
     cloudinary.config(options.config);
   }
 
@@ -34,6 +35,7 @@ module.exports = options => {
           if (error) {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }
+
           file.cloudinary = Object.assign(result, {
             original_filename: path.basename(file.path, path.extname(file.path))
           });
@@ -48,6 +50,7 @@ module.exports = options => {
           if (error) {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }
+
           file.cloudinary = Object.assign(result, {
             original_filename: path.basename(file.path, path.extname(file.path))
           });
@@ -84,6 +87,7 @@ module.exports.manifest = options => {
       if (!file.cloudinary) {
         return cb();
       }
+
       const basename = path.basename(file.path);
       manifest[basename] = file.cloudinary;
       cb();
