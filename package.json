@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "ava": "^1.0.1",
-    "dotenv": "^6.0.0",
+    "dotenv": "^7.0.0",
     "p-event": "^2.0.0",
     "semantic-release": "^15.12.4",
     "uuid": "^3.2.1",
