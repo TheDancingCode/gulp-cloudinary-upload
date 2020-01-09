@@ -41,7 +41,7 @@
     "ava": "^2.4.0",
     "dotenv": "^8.2.0",
     "p-event": "^4.1.0",
-    "semantic-release": "^15.12.4",
+    "semantic-release": "^16.0.0",
     "uuid": "^3.2.1",
     "xo": "^0.25.3"
   },
