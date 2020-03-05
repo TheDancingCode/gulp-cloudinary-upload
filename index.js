@@ -20,9 +20,11 @@ module.exports = options => {
   }
 
   return through.obj((file, enc, cb) => {
-    const uploadParams = Object.assign({overwrite: false}, options.params, {
+    const uploadParams = {
+      overwrite: false,
+      ...options.params,
       public_id: path.basename(file.path, path.extname(file.path))
-    });
+    };
 
     if (file.isNull()) {
       cb(null, file);
@@ -71,13 +73,11 @@ const getManifestFile = options =>
   });
 
 module.exports.manifest = options => {
-  options = Object.assign(
-    {
-      path: 'cloudinary-manifest.json',
-      merge: false
-    },
-    options
-  );
+  options = {
+    path: 'cloudinary-manifest.json',
+    merge: false,
+    ...options
+  };
   options.base = path.dirname(options.path);
 
   let manifest = {};
@@ -98,8 +98,10 @@ module.exports.manifest = options => {
         return;
       }
 
-      getManifestFile(options)
-        .then(manifestFile => {
+      (async () => {
+        try {
+          const manifestFile = await getManifestFile(options);
+
           if (options.merge && !manifestFile.isNull()) {
             let oldManifest = {};
 
@@ -115,8 +117,10 @@ module.exports.manifest = options => {
           );
           this.push(manifestFile);
           cb();
-        })
-        .catch(cb);
+        } catch (error) {
+          cb(error);
+        }
+      })();
     }
   );
 };

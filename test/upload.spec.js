@@ -1,15 +1,15 @@
-import {join} from 'path';
-import {readFileSync, createReadStream} from 'fs';
-import test from 'ava';
-import uuidv4 from 'uuid/v4';
-import pEvent from 'p-event';
-import {v2 as cloudinary} from 'cloudinary';
-import Vinyl from 'vinyl';
-import m from '..';
+const {join} = require('path');
+const {readFileSync, createReadStream} = require('fs');
+const test = require('ava');
+const {v4: uuidv4} = require('uuid');
+const pEvent = require('p-event');
+const {v2: cloudinary} = require('cloudinary');
+const Vinyl = require('vinyl');
+const m = require('..');
 
 const createFixture = async options => {
   options = options || {};
-  const params = Object.assign({}, options.params);
+  const params = {...options.params};
   const stream = m({params});
   const data = pEvent(stream, 'data');
 

@@ -1,8 +1,8 @@
-import {join} from 'path';
-import test from 'ava';
-import pEvent from 'p-event';
-import Vinyl from 'vinyl';
-import m from '..';
+const {join} = require('path');
+const test = require('ava');
+const pEvent = require('p-event');
+const Vinyl = require('vinyl');
+const m = require('..');
 
 const uploadResponse = {
   public_id: 'bluepixel',
