@@ -22,8 +22,10 @@ module.exports = options => {
   return through.obj((file, enc, cb) => {
     const uploadParameters = {
       overwrite: false,
-      ...options.params,
-      public_id: path.basename(file.path, path.extname(file.path))
+      filename: file.stem,
+      use_filename: true,
+      unique_filename: false,
+      ...options.params
     };
 
     if (file.isNull()) {
@@ -38,9 +40,7 @@ module.exports = options => {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }
 
-          file.cloudinary = Object.assign(result, {
-            original_filename: path.basename(file.path, path.extname(file.path))
-          });
+          file.cloudinary = result;
           return cb(null, file);
         })
         .end(file.contents);
@@ -53,9 +53,7 @@ module.exports = options => {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }
 
-          file.cloudinary = Object.assign(result, {
-            original_filename: path.basename(file.path, path.extname(file.path))
-          });
+          file.cloudinary = result;
           return cb(null, file);
         })
       );

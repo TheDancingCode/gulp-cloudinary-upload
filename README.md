@@ -146,9 +146,9 @@ config: {
 ##### params
 
 Type: `Object`<br>
-Default: `{ overwrite: false }`
+Default: `{ overwrite: false, use_filename: true, unique_filename: false }`
 
-Pass additional parameters to [Cloudinary's upload method](https://cloudinary.com/documentation/image_upload_api_reference#upload). Useful when creating eager transformations or tagging images. Note that this plugin always uses a file's name as its `public_id`. As a result, the `public_id`, `use_filename` and `unique_filename` parameters won't have any effect.
+Pass additional parameters to [Cloudinary's upload method](https://cloudinary.com/documentation/image_upload_api_reference#upload). Useful when creating eager transformations or tagging images.
 
 Example:
 

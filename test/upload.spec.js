@@ -52,10 +52,10 @@ test('uploads images in Buffer mode', async t => {
 
   t.true(file.isBuffer());
   try {
-    await cloudinary.api.resource(file.stem);
+    await cloudinary.uploader.destroy(t.context.publicID);
     t.pass();
-  } catch {
-    t.fail();
+  } catch (error) {
+    t.fail(error);
   }
 });
 
@@ -82,14 +82,6 @@ test('stores the upload response for later', async t => {
   const file = await createFixture({publicID: t.context.publicID});
 
   t.truthy(file.cloudinary);
-});
-
-test('overrides `original_filename` in the upload response', async t => {
-  t.plan(1);
-
-  const file = await createFixture({publicID: t.context.publicID});
-
-  t.is(file.cloudinary.original_filename, file.stem);
 });
 
 test('allows overwriting images', async t => {
