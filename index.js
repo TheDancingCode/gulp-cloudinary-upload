@@ -20,7 +20,7 @@ module.exports = options => {
   }
 
   return through.obj((file, enc, cb) => {
-    const uploadParams = {
+    const uploadParameters = {
       overwrite: false,
       ...options.params,
       public_id: path.basename(file.path, path.extname(file.path))
@@ -33,7 +33,7 @@ module.exports = options => {
 
     if (file.isBuffer()) {
       cloudinary.uploader
-        .upload_stream(uploadParams, (error, result) => {
+        .upload_stream(uploadParameters, (error, result) => {
           if (error) {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }
@@ -48,7 +48,7 @@ module.exports = options => {
 
     if (file.isStream()) {
       file.contents.pipe(
-        cloudinary.uploader.upload_stream(uploadParams, (error, result) => {
+        cloudinary.uploader.upload_stream(uploadParameters, (error, result) => {
           if (error) {
             return cb(new PluginError('gulp-cloudinary-upload', error.message));
           }

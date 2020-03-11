@@ -9,8 +9,8 @@ const m = require('..');
 
 const createFixture = async options => {
   options = options || {};
-  const params = {...options.params};
-  const stream = m({params});
+  const parameters = {...options.params};
+  const stream = m({params: parameters});
   const data = pEvent(stream, 'data');
 
   const fixturePath = join(__dirname, 'fixtures/redpixel.png');
