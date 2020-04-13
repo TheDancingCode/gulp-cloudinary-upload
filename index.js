@@ -6,7 +6,7 @@ const cloudinary = require('cloudinary').v2;
 const Vinyl = require('vinyl');
 const vinylFile = require('vinyl-file');
 
-module.exports = options => {
+module.exports = (options) => {
   if (!process.env.CLOUDINARY_URL) {
     if (!options.config) {
       throw new PluginError(
@@ -61,8 +61,8 @@ module.exports = options => {
   });
 };
 
-const getManifestFile = options =>
-  vinylFile.read(options.path, options).catch(error => {
+const getManifestFile = (options) =>
+  vinylFile.read(options.path, options).catch((error) => {
     if (error.code === 'ENOENT') {
       return new Vinyl(options);
     }
@@ -70,7 +70,7 @@ const getManifestFile = options =>
     throw error;
   });
 
-module.exports.manifest = options => {
+module.exports.manifest = (options) => {
   options = {
     path: 'cloudinary-manifest.json',
     merge: false,
@@ -90,7 +90,7 @@ module.exports.manifest = options => {
       manifest[basename] = file.cloudinary;
       cb();
     },
-    function(cb) {
+    function (cb) {
       if (Object.keys(manifest).length === 0) {
         cb();
         return;
