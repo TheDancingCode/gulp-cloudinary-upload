@@ -28,7 +28,7 @@ const createFixture = async (options = {}) => {
   return file;
 };
 
-test('builds a manifest file', async t => {
+test('builds a manifest file', async (t) => {
   t.plan(2);
 
   const file = await createFixture();
@@ -39,7 +39,7 @@ test('builds a manifest file', async t => {
   });
 });
 
-test('allows naming the manifest file', async t => {
+test('allows naming the manifest file', async (t) => {
   t.plan(1);
 
   const path = 'manifest.json';
@@ -48,7 +48,7 @@ test('allows naming the manifest file', async t => {
   t.is(file.relative, path);
 });
 
-test('appends to an existing manifest file', async t => {
+test('appends to an existing manifest file', async (t) => {
   t.plan(2);
 
   const manifestFixturePath = join(
@@ -79,7 +79,7 @@ test('appends to an existing manifest file', async t => {
   });
 });
 
-test('does not append to an existing manifest by default', async t => {
+test('does not append to an existing manifest by default', async (t) => {
   t.plan(2);
 
   const manifestFixturePath = join(

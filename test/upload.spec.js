@@ -7,7 +7,7 @@ const {v2: cloudinary} = require('cloudinary');
 const Vinyl = require('vinyl');
 const m = require('..');
 
-const createFixture = async options => {
+const createFixture = async (options) => {
   options = options || {};
   const parameters = {...options.params};
   const stream = m({params: parameters});
@@ -30,11 +30,11 @@ const createFixture = async options => {
   return file;
 };
 
-test.beforeEach(t => {
+test.beforeEach((t) => {
   t.context.publicID = uuidv4();
 });
 
-test.afterEach(async t => {
+test.afterEach(async (t) => {
   t.plan(1);
 
   try {
@@ -45,7 +45,7 @@ test.afterEach(async t => {
   }
 });
 
-test('uploads images in Buffer mode', async t => {
+test('uploads images in Buffer mode', async (t) => {
   t.plan(2);
 
   const file = await createFixture({publicID: t.context.publicID});
@@ -59,7 +59,7 @@ test('uploads images in Buffer mode', async t => {
   }
 });
 
-test('uploads images in Streaming mode', async t => {
+test('uploads images in Streaming mode', async (t) => {
   t.plan(2);
 
   const file = await createFixture({
@@ -76,7 +76,7 @@ test('uploads images in Streaming mode', async t => {
   }
 });
 
-test('stores the upload response for later', async t => {
+test('stores the upload response for later', async (t) => {
   t.plan(1);
 
   const file = await createFixture({publicID: t.context.publicID});
@@ -84,7 +84,7 @@ test('stores the upload response for later', async t => {
   t.truthy(file.cloudinary);
 });
 
-test('allows overwriting images', async t => {
+test('allows overwriting images', async (t) => {
   t.plan(1);
 
   await cloudinary.uploader.upload('test/fixtures/redpixel.png', {
@@ -99,7 +99,7 @@ test('allows overwriting images', async t => {
   t.true(file.cloudinary.overwritten);
 });
 
-test('does not overwrite images by default', async t => {
+test('does not overwrite images by default', async (t) => {
   t.plan(1);
 
   await cloudinary.uploader.upload('test/fixtures/redpixel.png', {
@@ -111,7 +111,7 @@ test('does not overwrite images by default', async t => {
   t.falsy(file.cloudinary.overwritten);
 });
 
-test('accepts upload options', async t => {
+test('accepts upload options', async (t) => {
   t.plan(1);
 
   const file = await createFixture({
