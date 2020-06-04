@@ -105,7 +105,7 @@ module.exports.manifest = (options) => {
 
             try {
               oldManifest = JSON.parse(manifestFile.contents.toString());
-            } catch (_) {}
+            } catch {}
 
             manifest = Object.assign(oldManifest, manifest);
           }
