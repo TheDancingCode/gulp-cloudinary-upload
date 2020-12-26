@@ -1,4 +1,4 @@
-const {join} = require('path');
+const path = require('path');
 const test = require('ava');
 const pEvent = require('p-event');
 const Vinyl = require('vinyl');
@@ -16,7 +16,7 @@ const createFixture = async (options = {}) => {
   const data = pEvent(stream, 'data');
 
   const inputFile = new Vinyl({
-    path: join(process.cwd(), 'src/images/bluepixel.png'),
+    path: path.join(process.cwd(), 'src/images/bluepixel.png'),
     contents: Buffer.from('')
   });
   inputFile.cloudinary = uploadResponse;
@@ -51,7 +51,7 @@ test('allows naming the manifest file', async (t) => {
 test('appends to an existing manifest file', async (t) => {
   t.plan(2);
 
-  const manifestFixturePath = join(
+  const manifestFixturePath = path.join(
     __dirname,
     'fixtures/cloudinary-manifest.json'
   );
@@ -82,7 +82,7 @@ test('appends to an existing manifest file', async (t) => {
 test('does not append to an existing manifest by default', async (t) => {
   t.plan(2);
 
-  const manifestFixturePath = join(
+  const manifestFixturePath = path.join(
     __dirname,
     'fixtures/cloudinary-manifest.json'
   );

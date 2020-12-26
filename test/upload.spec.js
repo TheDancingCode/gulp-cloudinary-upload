@@ -1,4 +1,4 @@
-const {join} = require('path');
+const path = require('path');
 const {readFileSync, createReadStream} = require('fs');
 const test = require('ava');
 const {v4: uuidv4} = require('uuid');
@@ -13,14 +13,14 @@ const createFixture = async (options) => {
   const stream = m({params: parameters});
   const data = pEvent(stream, 'data');
 
-  const fixturePath = join(__dirname, 'fixtures/redpixel.png');
+  const fixturePath = path.join(__dirname, 'fixtures/redpixel.png');
   const fixtureContents = options.streaming
     ? createReadStream(fixturePath)
     : readFileSync(fixturePath);
 
   stream.end(
     new Vinyl({
-      path: join(process.cwd(), `src/images/${options.publicID}.png`),
+      path: path.join(process.cwd(), `src/images/${options.publicID}.png`),
       contents: fixtureContents
     })
   );
