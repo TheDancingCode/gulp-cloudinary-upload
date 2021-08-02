@@ -17,19 +17,22 @@ Only [LTS and current releases](https://github.com/nodejs/Release#release-schedu
 Upload images to your [Cloudinary](https://cloudinary.com/) cloud. The plugin uses the filename as `public_id` for easy retrieval.
 
 ```js
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const cloudinaryUpload = require('gulp-cloudinary-upload');
 
-gulp.task('default', () =>
-  gulp.src('src/images/*')
-    .pipe(cloudinaryUpload({
+function upload() {
+  return src('src/images/*').pipe(
+    cloudinaryUpload({
       config: {
         cloud_name: 'sample',
         api_key: '874837483274837',
-        api_secret: 'a676b67565c6767a6767d6767f676fe1'
-      }
-    }));
-);
+        api_secret: 'a676b67565c6767a6767d6767f676fe1',
+      },
+    })
+  );
+}
+
+exports.upload = upload;
 ```
 
 ### Asset manifest
@@ -37,21 +40,25 @@ gulp.task('default', () =>
 Write an asset manifest mapping the original images to Cloudinary's upload response. This data can be consumed by other plugins and is particularly useful in conjuction with templating languages.
 
 ```js
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const cloudinaryUpload = require('gulp-cloudinary-upload');
 
-gulp.task('default', () =>
-  gulp.src('src/images/*')
-    .pipe(cloudinaryUpload({
-      config: {
-        cloud_name: 'sample',
-        api_key: '874837483274837',
-        api_secret: 'a676b67565c6767a6767d6767f676fe1'
-      }
-    }))
+function upload() {
+  return src('src/images/*')
+    .pipe(
+      cloudinaryUpload({
+        config: {
+          cloud_name: 'sample',
+          api_key: '874837483274837',
+          api_secret: 'a676b67565c6767a6767d6767f676fe1',
+        },
+      })
+    )
     .pipe(cloudinaryUpload.manifest())
-    .pipe(gulp.dest('src/data'));
-);
+    .pipe(dest('src/data'));
+}
+
+exports.upload = upload;
 ```
 
 Example manifest, after uploading `cat.png` and `dog.jpg`:
@@ -99,24 +106,30 @@ Example manifest, after uploading `cat.png` and `dog.jpg`:
 By default, `cloudinary-manifest.json` will be replaced as a whole. To merge with an existing manifest, pass `merge: true` and the `path` to the manifest to `cloudinaryUpload.manifest()`:
 
 ```js
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const cloudinaryUpload = require('gulp-cloudinary-upload');
 
-gulp.task('default', () =>
-  gulp.src('src/images/*')
-    .pipe(cloudinaryUpload({
-      config: {
-        cloud_name: 'sample',
-        api_key: '874837483274837',
-        api_secret: 'a676b67565c6767a6767d6767f676fe1'
-      }
-    }))
-    .pipe(cloudinaryUpload.manifest({
-      path: 'src/data/cloudinary-manifest.json',
-      merge: true
-    }))
-    .pipe(gulp.dest('src/data'));
-);
+function upload() {
+  return src('src/images/*')
+    .pipe(
+      cloudinaryUpload({
+        config: {
+          cloud_name: 'sample',
+          api_key: '874837483274837',
+          api_secret: 'a676b67565c6767a6767d6767f676fe1',
+        },
+      })
+    )
+    .pipe(
+      cloudinaryUpload.manifest({
+        path: 'src/data/cloudinary-manifest.json',
+        merge: true,
+      })
+    )
+    .pipe(dest('src/data'));
+}
+
+exports.upload = upload;
 ```
 
 ## API
@@ -154,7 +167,7 @@ Example:
 
 ```js
 params: {
-  tags: ['cat', 'British Longhair', 'animal', '2018']
+  tags: ['cat', 'British Longhair', 'animal', '2018'];
 }
 ```
 
