@@ -46,8 +46,6 @@
     "xo": "^0.39.1"
   },
   "xo": {
-    "space": 2,
-    "prettier": true,
     "rules": {
       "camelcase": 0
     }
