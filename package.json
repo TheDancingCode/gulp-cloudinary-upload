@@ -52,10 +52,5 @@
   },
   "ava": {
     "require": "dotenv/config"
-  },
-  "greenkeeper": {
-    "ignore": [
-      "p-event"
-    ]
   }
 }
