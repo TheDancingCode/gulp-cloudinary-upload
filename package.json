@@ -35,7 +35,7 @@
     "plugin-error": "^2.0.0",
     "through2": "^4.0.2",
     "vinyl": "^3.0.0",
-    "vinyl-file": "^3.0.0"
+    "vinyl-file": "^5.0.0"
   },
   "devDependencies": {
     "ava": "^3.15.0",
