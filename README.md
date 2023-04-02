@@ -1,4 +1,4 @@
-# gulp-cloudinary-upload [![Build Status](https://travis-ci.org/TheDancingCode/gulp-cloudinary-upload.svg?branch=master)](https://travis-ci.org/TheDancingCode/gulp-cloudinary-upload) [![npm](https://img.shields.io/npm/v/gulp-cloudinary-upload.svg)](https://www.npmjs.com/package/gulp-cloudinary-upload) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+# gulp-cloudinary-upload [![Build Status](https://github.com/TheDancingCode/gulp-cloudinary-upload/actions/workflows/ci.yml/badge.svg)](https://travis-ci.org/TheDancingCode/gulp-cloudinary-upload) [![npm](https://img.shields.io/npm/v/gulp-cloudinary-upload.svg)](https://www.npmjs.com/package/gulp-cloudinary-upload) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 > Batch upload images to Cloudinary
 
